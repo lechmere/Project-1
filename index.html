@@ -1,11 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Frogger</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <audio class="win">
+    <source src="./frogger-music/frogger-music.mp3" type="audio/mp3">
+  </audio>
+  <audio class="hop">
+    <source src="./sound-frogger-hop/sound-frogger-hop.wav" type="audio/wav">
+  </audio>
+  <audio class="sunk">
+    <source src="./sound-frogger-plunk/sound-frogger-plunk.wav" type="audio/wav">
+  </audio>
+  <audio class="squash">
+    <source src="./sound-frogger-squash/sound-frogger-squash.wav" type="audio/wav">
+  </audio>
 </head>
+
 <body>
-  <h1>Project</h1>
+  <header>
+    <img class="frogger" src="./images/904225-frogger-removebg-preview.png" alt="frogger">
+    <section>
+      <h2 class="lives">Lives: 3</h2>
+      <h2 class="highscore">Hi-Score: 0</h2>
+    </section>
+  </header>
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h1>Level Up!</h1>
+      <h1 class = "score"> Your Score: </h1>
+    </div>
+  </div>
+    <div class="modal-over">
+      <div class="modal-content-over">
+        <span class="close-button-over">&times;</span>
+        <h1>Uh-oh Game Over!</h1>
+      </div>
+  </div>
+  <div class="grid-container">
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item home"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item home"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item home"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item home"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item home"></div>
+    <div class="grid-item ground"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item river"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item road"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor frog-floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+    <div class="grid-item floor"></div>
+
 </body>
+<script src="js/app.js"></script>
+
 </html>

@@ -1,0 +1,179 @@
+html {
+  background-color: hsla(226, 89%, 17%, 0.79);
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.modal, .modal-over {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal-content, .modal-content-over {
+  position: absolute;
+  color: hsl(238, 89%, 17%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.close-button, .close-button-over {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+.close-button:hover, .close-button-over:hover {
+  background-color: darkgray;
+}
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.frogger {
+  height: 132px;
+  width: 408px;
+  display: flex;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  flex: 0.5;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px;
+  grid-template-rows: 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px;
+  justify-content: center;
+}
+.ground {
+  background: url('../images/frogger-screenshot.png');
+}
+.river {
+  background-color: hsl(238, 89%, 17%);
+}
+.home {
+  background-color: hsl(238, 89%, 17%);
+}
+.floor {
+  background: url('../images/floor-frogger.png');
+}
+.road {
+  background-color: #000000;
+}
+.frog {
+  background: url('../images/frog.png');
+  background-repeat: no-repeat;
+}
+.frog-floor {
+  background: url('../images/frog.png'), url('../images/floor-frogger.png');
+  background-repeat: no-repeat;
+}
+.frog-road {
+  background: url('../images/frog.png');
+  background-color: #000000;
+  background-repeat: no-repeat;
+}
+.frog-river {
+  background: url('../images/frog.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+} 
+.racecar {
+  background: url('../images/racecar.png');
+  background-color: #000000;
+  background-repeat: no-repeat;
+}
+.car {
+  background: url('../images/cars.png');
+  background-color: #000000;
+  background-repeat: no-repeat;
+}
+.van {
+  background: url('../images/frogger-screenshot (1) (1).png');
+  background-color: #000000;
+  background-repeat: no-repeat;
+}
+.traffic {
+  background: url('../images/traffice.png');
+  background-color: #000000;
+  background-repeat: no-repeat;
+}
+.log {
+  background: url('../images/log.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.middle {
+  background: url('../images/middle.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.back {
+  background: url('../images/back.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.front {
+  background: url('../images/front.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.turtle {
+  background: url('../images/turtle.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.sunk-turtle {
+  background: url('../images/under\ turtle.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.turtlefrog {
+  background: url('../images/turtle\ frog.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.logfrog {
+  background: url('../images/log\ frog.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.middlefrog {
+  background: url('../images/middle\ frog.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.frontfrog {
+  background: url('../images/front\ frog.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
+.backfrog {
+  background: url('../images/back\ frog.png');
+  background-color: hsl(238, 89%, 17%);
+  background-repeat: no-repeat;
+}
