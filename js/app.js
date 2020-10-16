@@ -309,42 +309,57 @@ setInterval(() => {
 log.forEach(log => {
   cells[log].classList.add('log')
 })
-
 const logInterval = setInterval(() => {
   log.forEach((logNum, i) => {
-    if ((cells[logNum].classList.contains('log')) && (cells[frog].classList.contains('log'))) {
-      cells[logNum].classList.remove('log')
-      cells[logNum].classList.add('logfrog')
-    } else if ((cells[logNum].classList.contains('logfrog')) && !(cells[frog].classList.contains('log'))) {
-      cells[logNum].classList.remove('logfrog')
-      cells[logNum].classList.add('log')
-    } else if ((logNum === 55) && (cells[logNum].classList.contains('log'))) {
-      cells[logNum].classList.remove('log')
-      cells[logNum].classList.remove('frog')
-      log[i] = 65
-      cells[logNum + 10].classList.add('log')
-      cells[logNum + 10].classList.add('frog')
-    } else if ((logNum === 55) && (cells[logNum].classList.contains('logfrog'))) {
-      cells[logNum].classList.remove('logfrog')
-      cells[logNum].classList.remove('frog')
-      log[i] = 65
-      cells[logNum + 10].classList.add('logfrog')
-      cells[logNum + 10].classList.add('frog')
-    } else if (cells[logNum].classList.contains('log')) {
-      cells[logNum].classList.remove('log')
-      cells[logNum].classList.remove('frog')
-      log[i] -= 1
-      cells[logNum - 1].classList.add('log')
-      cells[logNum - 1].classList.add('frog')
+    if (logNum === 55) {
+    cells[logNum].classList.remove('log')
+    log[i] = 65
+    cells[logNum + 10].classList.add('log')
     } else {
-      cells[logNum].classList.remove('logfrog')
-      cells[logNum].classList.remove('frog')
-      log[i] -= 1
-      cells[logNum - 1].classList.add('logfrog')
-      cells[logNum - 1].classList.add('frog')
+    cells[logNum].classList.remove('log')
+    log[i] -= 1
+    cells[logNum - 1].classList.add('log')
     }
   })
 }, 1000)
+
+
+
+// const logInterval = setInterval(() => {
+//   log.forEach((logNum, i) => {
+//     if ((cells[logNum].classList.contains('log')) && (cells[frog].classList.contains('log'))) {
+//       cells[logNum].classList.remove('log')
+//       cells[logNum].classList.add('logfrog')
+//     } else if ((cells[logNum].classList.contains('log')) && !(cells[frog].classList.contains('log'))) {
+//       cells[logNum].classList.remove('logfrog')
+//       cells[logNum].classList.add('log')
+//     } else if ((logNum === 55) && (cells[logNum].classList.contains('log'))) {
+//       cells[logNum].classList.remove('log')
+//       cells[logNum].classList.remove('frog')
+//       log[i] = 65
+//       cells[logNum + 10].classList.add('log')
+//       cells[logNum + 10].classList.add('frog')
+//     } else if ((logNum === 55) && (cells[logNum].classList.contains('logfrog'))) {
+//       cells[logNum].classList.remove('logfrog')
+//       cells[logNum].classList.remove('frog')
+//       log[i] = 65
+//       cells[logNum + 10].classList.add('logfrog')
+//       cells[logNum + 10].classList.add('frog')
+//     } else if (cells[logNum].classList.contains('log')) {
+//       cells[logNum].classList.remove('log')
+//       cells[logNum].classList.remove('frog')
+//       log[i] -= 1
+//       cells[logNum - 1].classList.add('log')
+//       cells[logNum - 1].classList.add('frog')
+//     } else {
+//       cells[logNum].classList.remove('logfrog')
+//       cells[logNum].classList.remove('frog')
+//       log[i] -= 1
+//       cells[logNum - 1].classList.add('logfrog')
+//       cells[logNum - 1].classList.add('frog')
+//     }
+//   })
+// }, 1000)
 
 
 //long log movement
