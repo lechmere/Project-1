@@ -177,3 +177,8 @@ section {
   background-color: hsl(238, 89%, 17%);
   background-repeat: no-repeat;
 }
+/* div.grid-item.log.river.frog {
+  background: url('../images/frog.png'), url('../images/log.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+} */
