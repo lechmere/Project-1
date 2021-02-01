@@ -29,7 +29,6 @@ const lives = document.querySelector(".lives")
 const modalOver = document.querySelector(".modal-over")
 const closeButtonOver = document.querySelector(".close-button-over")
 
-// restart
 function restart() {
   if (life === 0) {
     cells[frog].classList.remove('frog-road')
@@ -54,7 +53,6 @@ function windowOnClickOver(event) {
 closeButtonOver.addEventListener("click", toggleModalOver);
 window.addEventListener("click", windowOnClickOver);
 
-// level up
 function toggleModal() {
   modalScore.innerHTML = `Your Score: ${score}`
   modal.classList.toggle("show-modal");
@@ -69,7 +67,6 @@ function windowOnClick(event) {
 closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
 
-// sounds
 function winning() {
   const myMusic = document.querySelector('.win')
   myMusic.play()
@@ -93,9 +90,7 @@ function squash() {
 //   div.innerHTML = i
 // }
 
-// road collision: replace frog, squash sound, remove life.
 function roadGameOver() {
-  // console.log(frog, cells[frog], cells[frog].classList);
   if ((cells[frog].classList.contains('car')) || (cells[frog].classList.contains('racecar')) || (cells[frog].classList.contains('van')) || (cells[frog].classList.contains('traffic'))) {
     squash()
     life -= 1
@@ -107,7 +102,6 @@ function roadGameOver() {
   }
 }
 
-// river death: replace frog, sunk sound, remove life.
 function riverGameOver() {
   if (((cells[frog].classList.contains('frog-river')) && !(cells[frog].classList.contains('log')) && !(cells[frog].classList.contains('middle')) && !(cells[frog].classList.contains('back')) && !(cells[frog].classList.contains('front')) && !(cells[frog].classList.contains('turtle'))) || (cells[frog].classList.contains('sunk-turtle'))) {
     drowning('frog-river')
@@ -127,7 +121,7 @@ function drowning(className) {
 document.addEventListener('keypress', (event) => {
   const key = event.key
   if (key === 'w' && ((frog === 23) || (frog === 25) || (frog === 27) || (frog === 29) || (frog === 31))) {
-    moveFrog(MOVE_UP, 50, 'frog-river', 'frog-river')
+    moveFrog(MOVE_UP, 50, 'turtlefrog', 'frog-river')
     highScore.innerHTML = `Hi-Score: ${score}`
     cells[frog].classList.remove('frog-river')
     frog = 126
@@ -178,12 +172,10 @@ function moveFrog(distance, points, startClass, endClass) {
   cells[frog].classList.remove(startClass)
   frog -= distance;
   cells[frog].classList.add(endClass)
-  updateFrogCell(frog);
   hop();
   score += points;
 }
 
-// Movement
 function objectMovement(object, start, end, interval, objectName, moveLeft, frogWithObject, frogWithObjectClass, frogWithObjectClassesRemove = []) {
   setInterval(() => {
     object.forEach((objNum, i) => {
@@ -212,6 +204,8 @@ function objectMovement(object, start, end, interval, objectName, moveLeft, frog
         }
       }
       roadGameOver()
+      riverGameOver()
+      restart()
     })
   }, interval)
 }
