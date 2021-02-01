@@ -84,10 +84,10 @@ section {
 .road {
   background-color: #000000;
 }
-.frog {
+/* .frog {
   background: url('../images/frog.png');
   background-repeat: no-repeat;
-}
+} */
 .frog-floor {
   background: url('../images/frog.png'), url('../images/floor-frogger.png');
   background-repeat: no-repeat;
@@ -146,6 +146,7 @@ section {
   background: url('../images/turtle.png');
   background-color: hsl(238, 89%, 17%);
   background-repeat: no-repeat;
+  transform: rotate(180deg);
 }
 .sunk-turtle {
   background: url('../images/under\ turtle.png');
