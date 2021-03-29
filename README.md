@@ -81,39 +81,187 @@ document.addEventListener('keypress', (event) => {
   riverGameOver()
   restart()
 })
+
+function moveFrog(distance, points, startClass, endClass) {
+  cells[frog].classList.remove(startClass)
+  frog -= distance;
+  cells[frog].classList.add(endClass)
+  hop();
+  score += points;
+}
 ```
 
-I placed the invaders on the grid by creating an invaders array, which included the index values of the squares on the grid
-Then I worked on the invader movement logic, which moves the invaders right, down, left and down following a lead invader. I created a timer to move the invader armada until the invaders reach the bottom row.
-      // INVADER MOVEMENT LOGIC ------------------------------------------------
+I mapped out the objects (cars, logs and turtles) on the grid by creating an array of index values of the grid squares for each type of object.
+For the logic of the objects' movement, which moves all objects accross the screen in different speeds and alternating directions. I first created 
+      // OBJECT MOVEMENT LOGIC ------------------------------------------------
+```
+objectMovement(racecar, 98, 88, 400, 'racecar', false)
 
-      if (leadInvader % width === 3 && direction === 1) {
-        direction = width
-      } else if (leadInvader % width === 3 && direction === width) {
-        direction = -1
-      } else if (leadInvader % width === 0 && direction === -1) {
-        direction = width
-      } else if (leadInvader % width === 0 && direction === width) {
-        direction = 1
+function objectMovement(object, start, end, interval, objectName, moveLeft, frogWithObject, frogWithObjectClass, frogWithObjectClassesRemove = []) {
+  setInterval(() => {
+    object.forEach((objNum, i) => {
+      if (objNum === start) {
+        cells[objNum].classList.remove(objectName)
+        object[i] = end
+        let resetPositionStart = moveLeft ? objNum + 10 : objNum - 10;
+        cells[resetPositionStart].classList.add(objectName)
+        if (frogWithObject && frog === objNum) {
+          frogWithObjectClassesRemove.forEach((c) => cells[objNum].classList.remove(c))
+          drowning(frogWithObjectClass)
+        }
+      } else {
+        cells[objNum].classList.remove(frogWithObjectClass)
+        cells[objNum].classList.remove(objectName)
+        moveLeft ? object[i] -= 1 : object[i] += 1;
+        let resetPositionEnd = moveLeft ? objNum - 1 : objNum + 1;
+        cells[resetPositionEnd].classList.add(objectName)
+
+        if (frogWithObject && frog === objNum) {
+          console.log(frogWithObjectClass);
+          frogWithObjectClassesRemove.forEach((c) => cells[objNum].classList.remove(c))
+
+          frog = resetPositionEnd;
+          cells[frog].classList.add(frogWithObjectClass)
+        }
       }
-      addInvaders()
-      reachPlayer()
-    }
-When the invaders reach the bottom row or when the player is hit by invader fire, this calls a Game Over function which displays player's score and clears the grid and resets the game variables.
-Then it was time to create some lasers. Laser movements across the grid are controlled timers. When player lasers hit the invader armada, the hit invader is spliced off the array, once all invaders are eliminated this calls a youWin() function. Invaders fire by setting a timer to select a random invader from the first row to fire every 2.5 seconds.
-      // MAKE LASER ADVANCE ACROSS THE GRID ----------------------------------------------------
+      roadGameOver()
+      riverGameOver()
+      restart()
+    })
+  }, interval)
+}
+```
+When the hazardous objects collide with the frog or the frog enters the river water, the roadGameOVer/riverGameOver function is called. These functions remove a life, 30 points, play a sound effect and replace the frog in its starting position. When all the lives have been used the restart function is also called, prompting a modal to popup announcing game over and the game's variables are all reset. 
 
-      function laserAdvance() {
-        cells[laserIndex].classList.remove('laser') // remove laser class
-        if (laserIndex > width - 1) {
-          laserIndex = laserIndex - width // finding the cell directly above current laserindex
-          cells[laserIndex].classList.add('laser') // add class to next cell
-          if (laserIndex === width - width) { // stops at the grid
-            // console.log('past grid!')
-            clearInterval(laserTimerId)
-            cells[laserIndex].classList.remove('laser')
-          }
-          
+Then I added to the turtle's movement function, and created a combination of new functions that initiated random turtles to spontaneously sink and become hazards. 
+
+Laser movements across the grid are controlled timers. When player lasers hit the invader armada, the hit invader is spliced off the array, once all invaders are eliminated this calls a youWin() function. Invaders fire by setting a timer to select a random invader from the first row to fire every 2.5 seconds.
+ 
+ ```
+ function restart() {
+  if (life === 0) {
+    cells[frog].classList.remove('frog-road')
+    cells[frog].classList.remove('frog-river')
+    frog = 126
+    cells[frog].classList.add('frog-floor')
+    life = 3
+    lives.innerHTML = `Lives: ${life}`
+    score = 0
+    highScore.innerHTML = `Hi-Score: ${score}`
+    toggleModalOver()
+  }
+}
+function roadGameOver() {
+  if ((cells[frog].classList.contains('car')) || (cells[frog].classList.contains('racecar')) || (cells[frog].classList.contains('van')) || (cells[frog].classList.contains('traffic'))) {
+    squash()
+    life -= 1
+    score -= 30
+    lives.innerHTML = `Lives: ${life}`
+    cells[frog].classList.remove('frog-road')
+    frog = 126
+    cells[frog].classList.add('frog-floor')
+  }
+}
+
+function riverGameOver() {
+  if (((cells[frog].classList.contains('frog-river')) && !(cells[frog].classList.contains('log')) && !(cells[frog].classList.contains('middle')) && !(cells[frog].classList.contains('back')) && !(cells[frog].classList.contains('front')) && !(cells[frog].classList.contains('turtle'))) || (cells[frog].classList.contains('sunk-turtle'))) {
+    drowning('frog-river')
+  }
+}
+
+function drowning(className) {
+  sunk()
+  life -= 1
+  score -= 30
+  lives.innerHTML = `Lives: ${life}`
+  cells[frog].classList.remove(className)
+  frog = 126
+  cells[frog].classList.add('frog-floor')
+}
+```
+      
+      // MAKE SPONTANEOUS SINKING TURTLES ----------------------------------------------------
+```
+setInterval(() => {
+  if (turtleChanger1 === 32) {
+    cells[turtleChanger1].classList.remove('turtle')
+    cells[turtleChanger1].classList.remove('sunk-turtle')
+    turtleChanger1 = 22
+    cells[turtleChanger1].classList.add('turtle')
+    cells[turtleChanger1].classList.add('sunk-turtle')
+  } else {
+    cells[turtleChanger1].classList.remove('turtle')
+    cells[turtleChanger1].classList.remove('sunk-turtle')
+    turtleChanger1 += 1
+    cells[turtleChanger1].classList.add('turtle')
+    cells[turtleChanger1].classList.add('sunk-turtle')
+  }
+}, 1000)
+
+setInterval(() => {
+  if (turtleChanger2 === 32) {
+    cells[turtleChanger2].classList.remove('turtle')
+    cells[turtleChanger2].classList.remove('sunk-turtle')
+    turtleChanger2 = 22
+    cells[turtleChanger2].classList.add('turtle')
+    cells[turtleChanger2].classList.add('sunk-turtle')
+  } else {
+    cells[turtleChanger2].classList.remove('turtle')
+    cells[turtleChanger2].classList.remove('sunk-turtle')
+    turtleChanger2 += 1
+    cells[turtleChanger2].classList.add('turtle')
+    cells[turtleChanger2].classList.add('sunk-turtle')
+  }
+}, 1000)
+
+// sinking turtle
+function changeTurtle1() {
+  cells[turtleChanger1].classList.remove('turtle')
+  cells[turtleChanger1].classList.add('sunk-turtle')
+}
+function changeTurtle2() {
+  cells[turtleChanger2].classList.remove('turtle')
+  cells[turtleChanger2].classList.add('sunk-turtle')
+}
+(function loop1() {
+  var rand = Math.round(Math.random() * (7000 - 500)) + 500;
+  setTimeout(function () {
+    changeTurtle1();
+    loop1();
+  }, rand);
+}());
+(function loop2() {
+  var rand = Math.round(Math.random() * (6000 - 500)) + 500;
+  setTimeout(function () {
+    changeTurtle2();
+    loop2();
+  }, rand);
+}());
+
+function changeTurtle1Back() {
+  cells[turtleChanger1].classList.remove('sunk-turtle')
+  cells[turtleChanger1].classList.add('turtle')
+}
+function changeTurtle2Back() {
+  cells[turtleChanger2].classList.remove('sunk-turtle')
+  cells[turtleChanger2].classList.add('turtle')
+}
+(function backLoop1() {
+  var rand = Math.round(Math.random() * (7000 - 500)) + 500;
+  setTimeout(function () {
+    changeTurtle1Back();
+    backLoop1();
+  }, rand);
+}());
+
+(function backLoop2() {
+  var rand = Math.round(Math.random() * (9000 - 500)) + 500;
+  setTimeout(function () {
+    changeTurtle2Back();
+    backLoop2();
+  }, rand);
+}());
+```
           // COLLISION DETECTION ---------------------------------------------------------------
 
           if (cells[laserIndex].classList.contains('invaders')) { // If laser 'hits' invader
