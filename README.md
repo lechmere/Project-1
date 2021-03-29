@@ -1,4 +1,4 @@
-Frogger - GA Project One
+<h1>Frogger - GA Project One<h1>
 My first project using JavaScript and my first dev project for General Assembly's Software Engineering Immersive course.
 
 <img width="686" alt="Project1-Screenshot" src="https://user-images.githubusercontent.com/71281526/112830089-fa592e80-9089-11eb-823d-d7b8a764e3f7.png">
