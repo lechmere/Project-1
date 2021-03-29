@@ -9,15 +9,17 @@ The game has been deployed with GitHub Pages and is available here.
 <h2>Getting started</h2>
 Access the source code via the 'Clone or download' button
 Open the index.html file in your browser of choice to start the game.
-Goal and timeframe:
+
+<h2>Goal and timeframe:</h2>
 To build a functioning browser game with pure JavaScript in 8 days.
 
-Technologies used:
-HTML5
-CSS3
-JavaScript
-GitHub
-Brief:
+<ul><h2>Technologies used:</h2>
+    <li>HTML5</li>
+    <li>CSS3</li>
+    <li>JavaScript</li>
+    <li>GitHub</li></ul>
+
+<h2>Brief:</h2>
 Space Invaders is a classic 80s Taito arcade game. The player, moving left or right, aims to shoot an invading alien armada and achieve the highest score possible before either being eradicated by lasers that the aliens shoot periodically, or allowing the armada to reach Planet Earth's surface.
 
 My iteration pays tribute to the 2020 controversial Netflix hit, 'Tiger King - Murder, Mayhem and Madness'. Joe Exotic is defending his zoo by throwing tiger cubs towards an armada of his nemesis, Carole Baskin.
