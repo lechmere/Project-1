@@ -13,8 +13,8 @@ Open the index.html file in your browser of choice to start the game.
 <h2>Goal and timeframe:</h2>
 To build a functioning browser game with pure JavaScript in 8 days.
 
-<ul><h2>Technologies used:</h2>
-    <li>HTML5</li>
+<h2>Technologies used:</h2>
+    <ul><li>HTML5</li>
     <li>CSS3</li>
     <li>JavaScript</li>
     <li>GitHub</li></ul>
