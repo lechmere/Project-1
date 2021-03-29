@@ -30,6 +30,7 @@ My development process started by listing all the different functionalities the 
 I created the game grid square by setting a value for width, using a for-loop to create a div element while the index value was less than width times width. I then pushed these divs to an empty array and appended them to the grid div in my HTML.
 I made one div for player spaceship, and created keydown event listeners to allow the player to move and fire when the corresponding keys are pressed, with logic to refrain player from moving off the grid.
 
+The logic of the frog's movement moveFrog is used within the keypress event listener function. The key press event listener function includes many if functions becaause within this function the frog's styles are being rewritten. This is because each section of the game has different backgrounds; floor, road, river and within certain ranges when the frog moves up or down its background may need to change. Within the  moveFrog function the removal and readding of a style class is stipulated, along with a change in the frogs positioning, an increase in the player's score and a hop sound effect.
     // PLAYER FROG MOVEMENT ---------------------------------------------
 ```
 document.addEventListener('keypress', (event) => {
@@ -131,7 +132,7 @@ function objectMovement(object, start, end, interval, objectName, moveLeft, frog
   }, interval)
 }
 ```
-When the hazardous objects collide with the frog or the frog enters the river water, the roadGameOVer/riverGameOver function is called. These functions remove a life, 30 points, play a sound effect and replace the frog in its starting position. When all the lives have been used the restart function is also called, prompting a modal to popup announcing game over and the game's variables are all reset. 
+When the hazardous objects collide with the frog or the frog enters the river water, the roadGameOVer/riverGameOver function is called. These functions remove a life, 30 points, play a sound effect (either a squash or sink sound) and replace the frog in its starting position. When all the lives have been used the restart function is also called, prompting a modal (ModalOver) to popup announcing game over and the game's variables are all reset. The modal can be closed by clicking off the screen or the cross.
 
 Then I added to the turtle's movement function, and created a combination of new functions that initiated random turtles to spontaneously sink and become hazards. 
 
