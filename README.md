@@ -1,6 +1,6 @@
 <h1>Frogger - GA Project One</h1>
 My first project using JavaScript and my first dev project for General Assembly's Software Engineering Immersive course.
-
+</br>
 <img width="686" alt="Project1-Screenshot" src="https://user-images.githubusercontent.com/71281526/112830089-fa592e80-9089-11eb-823d-d7b8a764e3f7.png">
 
 <h2>Deployment</h2>
@@ -24,7 +24,7 @@ Space Invaders is a classic 80s Taito arcade game. The player, moving left or ri
 
 My iteration pays tribute to the 2020 controversial Netflix hit, 'Tiger King - Murder, Mayhem and Madness'. Joe Exotic is defending his zoo by throwing tiger cubs towards an armada of his nemesis, Carole Baskin.
 
-Process
+<h2>Process</h2>
 I started developing the game by sketching out a plan of all the different functionalities the game should have, and ranked them to critical for MVP and Nice-To-Haves. I then started pseudocoding my MVP down into bite size chunks to make sure I could deliver it in time to allow time for polishing and styling.
 
 I created the game grid square by setting a value for width, using a for-loop to create a div element while the index value was less than width times width. I then pushed these divs to an empty array and appended them to the grid div in my HTML.
@@ -97,19 +97,19 @@ Then it was time to create some lasers. Laser movements across the grid are cont
         }
       }
     }
-Known errors or bugs
+<h2>Known errors or bugs</h2>
 Collision logic: occasionally Joe's tiger cubs get stuck on the grid before reaching their goal, or shoot right through the first row of Carols.
 When user clicks 'Play Again', the invaders shoot two laser beams at the same time. This probably has to do with the timers not clearing properly
-Challenges
+<h2>Challenges</h2>
 This was my first project using JavaScript so I faced many challenges, of which the biggest were:
 
 Invader armada movement logic that should remain inaffected by changes to the invader array
 Collision detection logic
 Working with various set timers to create movement
-Wins
+<h2>Wins</h2>
 Gained experience in programmatical thinking, logical problem solving and different planning stages
 A fun and topical design theme
-Future improvements
+<h2>Future improvements</h2>
 A few issues remain to be ironed out, and there are also a few features I would like to add going forward:
 
 Add-ons and nice-to-haves to the game flow: spawning new invaders, adding the mothership, different hit scores for each invader row, level-up
@@ -117,5 +117,5 @@ High Score tally leveraging local storage
 Start Game and Finish Game modules with using popup functionality
 Adding responsive design
 CSS animations to achieve a more impactful design
-Key learnings
+<h2>Key learnings</h2>
 Making my first static JS browser game from scratch was a great learning exercise and a fun way to consolidate my learnings. In particular, I learnt a lot about DOM manipulation, different use cases for different JS array methods, and working with timers.
