@@ -1,14 +1,14 @@
 <h1>Frogger - GA Project One</h1>
 My first project using JavaScript and my first dev project for General Assembly's Software Engineering Immersive course.
-</br>
+
 <img width="686" alt="Project1-Screenshot" src="https://user-images.githubusercontent.com/71281526/112830089-fa592e80-9089-11eb-823d-d7b8a764e3f7.png">
 
 <h2>Deployment</h2>
-The game has been deployed with GitHub Pages and is available here.
+The game has been deployed with GitHub Pages and is available <a href="">here</a>.
 
 <h2>Getting started</h2>
-Access the source code via the 'Clone or download' button
-Open the index.html file in your browser of choice to start the game.
+<ol><li>Access the source code via the 'Clone or download' button.</li>
+    <li>Open the index.html file in your browser of choice to start the game.</li>
 
 <h2>Goal and timeframe:</h2>
 To build a functioning browser game with pure JavaScript in 8 days.
