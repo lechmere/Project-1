@@ -4,7 +4,7 @@ My first project using JavaScript and my first dev project for General Assembly'
 <img width="686" alt="Project1-Screenshot" src="https://user-images.githubusercontent.com/71281526/112830089-fa592e80-9089-11eb-823d-d7b8a764e3f7.png">
 
 <h2>Deployment</h2>
-The game has been deployed with GitHub Pages and is available <a href="">here</a>.
+The game has been deployed with GitHub Pages and is available <a href="https://lechmere.github.io/Project-1/">here</a>.
 
 <h2>Getting started</h2>
 <ol><li>Access the source code via the 'Clone or download' button.</li>
