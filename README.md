@@ -20,12 +20,12 @@ To build a functioning browser game with pure JavaScript in 8 days.
     <li>GitHub</li></ul>
 
 <h2>Brief:</h2>
-Space Invaders is a classic 80s Taito arcade game. The player, moving left or right, aims to shoot an invading alien armada and achieve the highest score possible before either being eradicated by lasers that the aliens shoot periodically, or allowing the armada to reach Planet Earth's surface.
+Frogger is a classic 80s Sega arcade game. The object of the game is to get the frog back to its home, whilst avoiding a plethera of hazards. The player can move the frog up,  left, down or right using the 'WASD' keys. First, the player must move the frog over the busy road, dodging the various cars which are moving at different speeds and alternating directions. Then the player must pass the river section. To do this, the frog must climb aboard logs and turtles (but beware of the turtles randomly sinking!). Lastly, the player must place the frog in to one of the five homies to complete the round.
 
-My iteration pays tribute to the 2020 controversial Netflix hit, 'Tiger King - Murder, Mayhem and Madness'. Joe Exotic is defending his zoo by throwing tiger cubs towards an armada of his nemesis, Carole Baskin.
+My iteration pays homage to the original frogger, using all the original illustrations and concepts.
 
 <h2>Process</h2>
-I started developing the game by sketching out a plan of all the different functionalities the game should have, and ranked them to critical for MVP and Nice-To-Haves. I then started pseudocoding my MVP down into bite size chunks to make sure I could deliver it in time to allow time for polishing and styling.
+My development process started by listing all the different functionalities the game required, and then ranking these functionalities in order of importance. I then sketched a physical image within a grid, to picture the frogs movements and the games general lay out. I started by first tackling the basic CSS styling and then psuedocoded each function individually.
 
 I created the game grid square by setting a value for width, using a for-loop to create a div element while the index value was less than width times width. I then pushed these divs to an empty array and appended them to the grid div in my HTML.
 I made one div for player spaceship, and created keydown event listeners to allow the player to move and fire when the corresponding keys are pressed, with logic to refrain player from moving off the grid.
