@@ -27,12 +27,22 @@ My iteration pays homage to the original frogger, using all the original illustr
 ## Process
 My development process started by listing all the different functionalities the game required, and then ranking these functionalities in order of importance. I then sketched a physical image within a grid, to picture the frogs movements and the games general lay out. I started by first tackling the basic CSS styling and then psuedocoded each function individually.
 
-I created the game grid square by setting a value for width, using a for-loop to create a div element while the index value was less than width times width. I then pushed these divs to an empty array and appended them to the grid div in my HTML.
-I made one div for player spaceship, and created keydown event listeners to allow the player to move and fire when the corresponding keys are pressed, with logic to refrain player from moving off the grid.
+<!-- I created the game grid square by setting a value for width, using a for-loop to create a div element while the index value was less than width times width.  -->
 
-The logic of the frog's movement moveFrog is used within the keypress event listener function. The key press event listener function includes many if functions becaause within this function the frog's styles are being rewritten. This is because each section of the game has different backgrounds; floor, road, river and within certain ranges when the frog moves up or down its background may need to change. Within the  moveFrog function the removal and readding of a style class is stipulated, along with a change in the frogs positioning, an increase in the player's score and a hop sound effect.
+The logic of the frog's movement is written within the moveFrog function. This function removes and readds style classes, changes the frogs positioning, increases the player's score and creates a hop sound effect. The style change is necessary due to the format of the game. Each section of the game has a different design, and thus a different background; floor, road, river. The frog's up and down movements can result in different backgrounds being necessary. The moveFrog function is combined with the keypress event listener function to give the range for which this background needs to change, and to provide the starting position of the frog. 
+
+The keypress event listener function also provides the completion result. It registers that when the frog moves up in to a homie position, the player receives 50 points, and a modal pops up celebrating the players score. 
+
     // PLAYER FROG MOVEMENT ---------------------------------------------
 ```
+function moveFrog(distance, points, startClass, endClass) {
+  cells[frog].classList.remove(startClass)
+  frog -= distance;
+  cells[frog].classList.add(endClass)
+  hop();
+  score += points;
+}
+
 document.addEventListener('keypress', (event) => {
   const key = event.key
   if (key === 'w' && ((frog === 23) || (frog === 25) || (frog === 27) || (frog === 29) || (frog === 31))) {
@@ -82,21 +92,19 @@ document.addEventListener('keypress', (event) => {
   riverGameOver()
   restart()
 })
-
-function moveFrog(distance, points, startClass, endClass) {
-  cells[frog].classList.remove(startClass)
-  frog -= distance;
-  cells[frog].classList.add(endClass)
-  hop();
-  score += points;
-}
 ```
 
 I mapped out the objects (cars, logs and turtles) on the grid by creating an array of index values of the grid squares for each type of object.
-For the logic of the objects' movement, which moves all objects accross the screen in different speeds and alternating directions. I first created 
+
+For the logic of the objects' movement, which moves all objects accross the screen in different speeds and alternating directions, I first created an objectMovement function. The objectMovement function uses intervals combined with forEach. This function takes in the variables, of the object's array, where the object's lane starts and ends on the grid, the time interval between movements, the style that each grid block must take (the object image) and the direction of the object. The function uses if logic to prevent the objects from moving out of their lane and to reregister the object's position.  
+
+In situations in which the frog is expected to be combining with the object (when riding a log or turtle), the variables used are a boolean regarding whether the frog is with the object frogWithObject, the new style class, and the classes that need to be removed to give the desired design effect.  
+
       // OBJECT MOVEMENT LOGIC ------------------------------------------------
 ```
 objectMovement(racecar, 98, 88, 400, 'racecar', false)
+objectMovement(front, 33, 43, 1000, 'front', true,  true, 'frontfrog', ['front', 'frog-river', 'middlefrog', 'backfrog', 'frog-river',])
+
 
 function objectMovement(object, start, end, interval, objectName, moveLeft, frogWithObject, frogWithObjectClass, frogWithObjectClassesRemove = []) {
   setInterval(() => {
@@ -132,12 +140,8 @@ function objectMovement(object, start, end, interval, objectName, moveLeft, frog
   }, interval)
 }
 ```
-When the hazardous objects collide with the frog or the frog enters the river water, the roadGameOVer/riverGameOver function is called. These functions remove a life, 30 points, play a sound effect (either a squash or sink sound) and replace the frog in its starting position. When all the lives have been used the restart function is also called, prompting a modal (ModalOver) to popup announcing game over and the game's variables are all reset. The modal can be closed by clicking off the screen or the cross.
-
-Then I added to the turtle's movement function, and created a combination of new functions that initiated random turtles to spontaneously sink and become hazards. 
-
-Laser movements across the grid are controlled timers. When player lasers hit the invader armada, the hit invader is spliced off the array, once all invaders are eliminated this calls a youWin() function. Invaders fire by setting a timer to select a random invader from the first row to fire every 2.5 seconds.
- 
+When the hazardous objects collide with the frog or the frog enters the river water, the roadGameOVer/riverGameOver function is called. These functions remove a life, 30 points, play a sound effect (either a squash or sink sound) and replace the frog in its starting position. These activate when it is registered that the frog cell has collided with another style and is thus now containing this style. When all the lives have been used the restart function is also called, prompting a modal (ModalOver) to popup announcing game over and the game's variables are all reset. The modal can be closed by clicking off the screen or the cross.
+      // COLLISION DETECTION ----------------------------------------------------------
  ```
  function restart() {
   if (life === 0) {
@@ -180,7 +184,7 @@ function drowning(className) {
   cells[frog].classList.add('frog-floor')
 }
 ```
-      
+   Then I added to the turtle's movement function, and created a combination of new functions and loops that initiated random turtles to spontaneously sink and become hazards. The setInterval function uses if logic to replace the style classes so the turtle sinks. The loop function adds randomness to this process.   
       // MAKE SPONTANEOUS SINKING TURTLES ----------------------------------------------------
 ```
 setInterval(() => {
@@ -263,46 +267,25 @@ function changeTurtle2Back() {
   }, rand);
 }());
 ```
-          // COLLISION DETECTION ---------------------------------------------------------------
-
-          if (cells[laserIndex].classList.contains('invaders')) { // If laser 'hits' invader
-            clearInterval(laserTimerId) //stop timer
-            cells[laserIndex].classList.remove('invaders', 'laser') // clear cell from both classes
-            const killedInvader = invaderArray.indexOf(laserIndex) // locates the index of hit invader
-            invaderArray.splice(killedInvader, 1)
-            score += 1000
-            scoreTally.innerHTML = score
-            enemyAudio.src = './assets/zap.wav'
-            enemyAudio.play()
-            if (invaderArray.length === 0) {
-              youWin()
-            }
-          }
-        }
-      }
-    }
 ## Known errors or bugs
-Collision logic: occasionally Joe's tiger cubs get stuck on the grid before reaching their goal, or shoot right through the first row of Carols.
-When user clicks 'Play Again', the invaders shoot two laser beams at the same time. This probably has to do with the timers not clearing properly
+Collision logic: occasionally the game will not register immediately that the frog has been hit on the road.
+Combining the frog with logs/turtles: it has a slight delay in the frog appearing on the object, adding an extra challenging feature to the game.
 
 ## Challenges
-This was my first project using JavaScript so I faced many challenges, of which the biggest were:
+This was my first project using JavaScript so I did face challenges, of which the biggest were:
 
-Invader armada movement logic that should remain inaffected by changes to the invader array
-Collision detection logic
-Working with various set timers to create movement
+The logic that allows the frog to ride on the logs and turtles.
+Collision detection logic.
 
 ## Wins
-Gained experience in programmatical thinking, logical problem solving and different planning stages
-A fun and topical design theme
+Gained experience in problem solving, programmatical thinking and different planning processes.
+Learnt alot about the orginal game!
 
 ## Future improvements
-A few issues remain to be ironed out, and there are also a few features I would like to add going forward:
-Add-ons and nice-to-haves to the game flow: spawning new invaders, adding the mothership, different hit scores for each invader row, level-up
-High Score tally leveraging local storage
-Start Game and Finish Game modules with using popup functionality
-Adding responsive design
+There are a few features that I hope to add on:
+Different levels. 
+A time constriction. 
 CSS animations to achieve a more impactful design
 
 ## Key learnings
-Making my first static JS browser game from scratch was a great learning exercise and a fun way to consolidate my learnings. In particular, I learnt a lot about DOM manipulation, different use cases for different JS array methods, and working with timers.
+This project allowed me to consolidate everything I had learnt about static JS browser games. It was particulalry educational in DOM manipulation, using intervals and different JS array methods for each scenario. 
