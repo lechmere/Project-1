@@ -100,7 +100,7 @@ For the logic of the objects' movement, which moves all objects accross the scre
 
 In situations in which the frog is expected to be combining with the object (when riding a log or turtle), the variables used are a boolean regarding whether the frog is with the object frogWithObject, the new style class, and the classes that need to be removed to give the desired design effect.  
 
-      // OBJECT MOVEMENT LOGIC ------------------------------------------------
+    // OBJECT MOVEMENT LOGIC ------------------------------------------------
 ```
 objectMovement(racecar, 98, 88, 400, 'racecar', false)
 objectMovement(front, 33, 43, 1000, 'front', true,  true, 'frontfrog', ['front', 'frog-river', 'middlefrog', 'backfrog', 'frog-river',])
@@ -141,8 +141,9 @@ function objectMovement(object, start, end, interval, objectName, moveLeft, frog
 }
 ```
 When the hazardous objects collide with the frog or the frog enters the river water, the roadGameOVer/riverGameOver function is called. These functions remove a life, 30 points, play a sound effect (either a squash or sink sound) and replace the frog in its starting position. These activate when it is registered that the frog cell has collided with another style and is thus now containing this style. When all the lives have been used the restart function is also called, prompting a modal (ModalOver) to popup announcing game over and the game's variables are all reset. The modal can be closed by clicking off the screen or the cross.
-      // COLLISION DETECTION ----------------------------------------------------------
- ```
+    
+    // COLLISION DETECTION ----------------------------------------------------------
+```
  function restart() {
   if (life === 0) {
     cells[frog].classList.remove('frog-road')
@@ -185,7 +186,8 @@ function drowning(className) {
 }
 ```
    Then I added to the turtle's movement function, and created a combination of new functions and loops that initiated random turtles to spontaneously sink and become hazards. The setInterval function uses if logic to replace the style classes so the turtle sinks. The loop function adds randomness to this process.   
-      // MAKE SPONTANEOUS SINKING TURTLES ----------------------------------------------------
+    
+    // MAKE SPONTANEOUS SINKING TURTLES ----------------------------------------------------
 ```
 setInterval(() => {
   if (turtleChanger1 === 32) {
