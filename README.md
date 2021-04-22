@@ -270,24 +270,24 @@ function changeTurtle2Back() {
 }());
 ```
 ## Known errors or bugs
-Collision logic: occasionally the game will not register immediately that the frog has been hit on the road.
-Combining the frog with logs/turtles: it has a slight delay in the frog appearing on the object, adding an extra challenging feature to the game.
+1. Collision logic: occasionally the game will not register immediately that the frog has been hit on the road.
+2. Combining the frog with logs/turtles: it has a slight delay in the frog appearing on the object, adding an extra challenging feature to the game.
 
 ## Challenges
 This was my first project using JavaScript so I did face challenges, of which the biggest were:
 
-The logic that allows the frog to ride on the logs and turtles.
-Collision detection logic.
+1. The logic that allows the frog to ride on the logs and turtles.
+2. Collision detection logic.
 
 ## Wins
-Gained experience in problem solving, programmatical thinking and different planning processes.
-Learnt alot about the orginal game!
+1. Gained experience in problem solving, programmatical thinking and different planning processes.
+2. Learnt a lot about the orginal game!
 
 ## Future improvements
 There are a few features that I hope to add on:
-Different levels. 
-A time constriction. 
-CSS animations to achieve a more impactful design
+1. Different levels. 
+2. A time constriction. 
+3. CSS animations to achieve a more impactful design
 
 ## Key learnings
 This project allowed me to consolidate everything I had learnt about static JS browser games. It was particulalry educational in DOM manipulation, using intervals and different JS array methods for each scenario. 
